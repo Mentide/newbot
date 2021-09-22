@@ -1,0 +1,14 @@
+{
+    "prefix" : ".",
+    "token" : "NzM2ODUzMDE5MjgyNjM2ODUx.Xx012Q.C9LttpLSCUln02_tjTH5Hj9xk_E",
+    "everyoneMention": false,
+  "hostedBy": true,
+    "QUEUE_LIMIT": 0,
+    "COLOR": "BLUE",
+    "bot_age" : 1,
+    "words_array" : ["Hi","Bye","This is array"],
+    "bot_info" : {
+        "name" : "domidy",
+        "version" : 1.0
+    }
+}
