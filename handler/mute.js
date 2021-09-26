@@ -27,7 +27,7 @@ module.exports.run = async (client, message, args) => {
 	
 	
 	const role = message.guild.roles.cache.find(r => r.id == "Muted");
-	if (!guild.mt || guild.mt == null) return message.reply(`у вас не стоит роль мута!');
+	if (!role) return;
 	if(role && member.roles.cache.has(role.id)) return message.channel.send("**❌Ошибка**\nЭтот пользователь уже в муте").catch(() => {});
 	let rl = message.guild.me.roles.highest.position;
 	if (rl) e = role.position;
