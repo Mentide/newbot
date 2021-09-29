@@ -41,7 +41,7 @@ client.setInterval(async () => {
         if (!guild) return;
         let name = guild.name;
         const guilds = await Guild.findOne({ id: guild.id }) || new Guild({ id: guild.id });
-        let role = guild.roles.cache.find(r => r.id == guilds.mt);
+        let role = guild.roles.cache.find(r => r.id == "Muted");
         if (!role) return;
         let now = new Date()
         now.getTime()
