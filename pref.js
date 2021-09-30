@@ -1,7 +1,9 @@
+
 const mongoose = require('mongoose');
+
 const prefix = new mongoose.Schema({
-    id: String
-    
+	id: String,
+	prefix: { type: String, default: '!' },
 
 });
 
