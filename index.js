@@ -9,13 +9,15 @@ const { MessageEmbed } = require('discord.js');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('бд', {
+mongoose.connect('ссылка', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 	useFindAndModify: false,
 	autoIndex: false,
 })
 	.catch((e) => console.log('[index.js] ' + e));
+	
+
 fs.readdir('./handler/', (err, files) => {
 	let ch = 0;
 	if (err) { console.log(err);}
@@ -33,6 +35,8 @@ fs.readdir('./handler/', (err, files) => {
 });
 
 client.on("ready", async () => {
+	console.log("[]")
+
 });
 client.setInterval(async () => {
     const users = await User.find({ muted: true, guild: { $ne: null } });
@@ -40,7 +44,6 @@ client.setInterval(async () => {
         let guild = client.guilds.cache.get(g.guild)
         if (!guild) return;
         let name = guild.name;
-        const guilds = await Guild.findOne({ id: guild.id }) || new Guild({ id: guild.id });
         let role = guild.roles.cache.find(r => r.id == "Muted");
         if (!role) return;
         let now = new Date()
@@ -54,16 +57,11 @@ client.setInterval(async () => {
             if (!member) return;
             if (!member.guild.me.hasPermission("MANAGE_ROLES")) return;
             member.roles.remove(role.id).catch(() => { });
-            let channel = guild.channels.cache.find(x => x.id == g.channel);
             let embs = new MessageEmbed()
             .setDescription(`Вы были размьючены на сервере **${name}** !`)
             .setColor(guilds.emb)
             if (member) member.send(embs).catch(() => { });
-            let emb = new MessageEmbed()
-            .setDescription(`**${member.user.tag}** был размучен!`)
-            .setColor(guilds.emb)
-            if (!channel) return;
-            channel.send(emb).catch(() => { });
+           
         }
     })
 }, 60000);
@@ -71,7 +69,7 @@ client.on('message', async (message) => {
 	if (!message.guild) return;
 	if (message.author.bot) return;
 	if (!message.member) return;
-	let prefix = '.';
+	let prefix = '!';
 
 		message.content = message.content.substr(prefix.length);
 		const newStr = message.content.replace(/\s+/g, ' ');
@@ -80,7 +78,12 @@ client.on('message', async (message) => {
 		const args = messageArray.slice(1);
 		const commandfile = client.commands.get(cmd);
 		if (!commandfile) return;
+	
+	
+		
 			commandfile.run(client, message, args);
-});
+	
 
-client.login('токен');
+	
+});
+client.login('ODE3NDU1MjExODAzMDUwMDQ0.YEJwfg.C6fx4dPxnRxrkmOP6LWnTM4quuk');
