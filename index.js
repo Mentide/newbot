@@ -69,7 +69,7 @@ client.on('message', async (message) => {
 	if (!message.guild) return;
 	if (message.author.bot) return;
 	if (!message.member) return;
-	let prefix = '!';
+	let prefix = '.';
 
 		message.content = message.content.substr(prefix.length);
 		const newStr = message.content.replace(/\s+/g, ' ');
